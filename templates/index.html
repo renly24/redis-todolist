@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    window.onload = function() {
+      renderTodoList()
+    };   
+
+      function renderTodoList(){
+        $.ajax({
+          type: "GET",
+          url: "/todoList",
+          data: {}
+        }).done(function(html){
+          $('#todoList').html(html)
+        })
+      }
+
+      function addButton(){
+          var deadline = $('#taskDeadline').val()
+          var task = $('#taskInput').val()
+          $.ajax({
+              type: "POST",
+              url: "/process_data",
+              data: {deadline: deadline, task: task}
+          })
+          .done(function(responce){
+              if (!responce.success) {
+                alert('登録できませんでした')
+              }
+              
+              // データ送信後の処理
+              renderTodoList()
+          });
+        }
+
+
+    </script>
+    <title>Todo List Example</title>
+  </head>
+
+  <body>
+    <h1>Todo List</h1>
+    <input type="text" id="taskDeadline" placeholder="00/00/00:00" />
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <input type="button" value="追加" onclick="addButton()" />
+
+    <div id="todoList"></div>
+    <!-- <table class="todo-list">
+      <tr class="todo-item">
+        <td><input type="checkbox" /></td>
+        <td>task</td>
+      </tr>
+    </table> -->
+    
+  </body>
+</html>

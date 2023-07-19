@@ -1,0 +1,25 @@
+ul {
+  list-style-type: none;
+}
+
+li.completed {
+  text-decoration: line-through;
+}
+
+button {
+  margin-top: 10px;
+}
+
+input[id="taskDeadline"] {
+  width: 75px
+}
+
+input[type="text"]{
+  margin-right: 5px;
+}
+
+.list-item {
+      border: 1px solid black;
+      padding: 5px;
+      margin: 5px;
+}

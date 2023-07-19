@@ -1,0 +1,9 @@
+<table class="todo-list">
+    <tr><th></th><th>期限</th><th>タスク</th></tr>
+    {% for todo in todoList %}
+    <tr class="todo-item">
+      <td><input type="checkbox" /></td>
+      <td>{{ todo[0] }}</td><td>{{ todo[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
